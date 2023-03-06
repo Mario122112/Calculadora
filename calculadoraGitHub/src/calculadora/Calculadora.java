@@ -68,6 +68,10 @@ public class Calculadora {
      * @return la division de los dos operarios (si el divisor no es cero)
      *  
      */
+    /**
+     * comentario nuevo ejdfjlajsdf
+     * @return 
+     */
     public int divide(){
         int result=num1/num2;
         return result;
