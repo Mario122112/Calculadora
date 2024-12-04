@@ -1,6 +1,6 @@
 import {useRef, useState, useEffect} from 'react';
 
-enum Operadores {
+export enum Operadores {
     sumar = '+',
     restar = '-',
     multiplicar = '*',
@@ -71,24 +71,9 @@ export const useCalculadora = () =>{
         setNumero('0');
     }
 
-    const operacionDividir = () => {
+    const operaciones = (operador:Operadores) =>{
         establecerUltimoNumero();
-        UltimaOperacion.current = Operadores.dividir;
-    }
-
-    const operacionMultiplicar = () => {
-        establecerUltimoNumero();
-        UltimaOperacion.current = Operadores.multiplicar;
-    }
-
-    const operacionRestar = () => {
-        establecerUltimoNumero();
-        UltimaOperacion.current = Operadores.restar;
-    }
-
-    const operacionSumar = () => {
-        establecerUltimoNumero();
-        UltimaOperacion.current = Operadores.sumar;
+        UltimaOperacion.current = operador;
     }
 
     const calcularResultado = () => {
@@ -110,6 +95,9 @@ export const useCalculadora = () =>{
                 return num1 * num2;
 
             case Operadores.dividir:
+                if(num1 == 0 || num2 == 0){
+                   return "No se puede dividir entre 0"
+                }
                 return num1 / num2;
 
             default:
@@ -158,10 +146,7 @@ export const useCalculadora = () =>{
         clean,
         cambiarSigno,
         borrarDigito,
-        operacionDividir,
-        operacionMultiplicar,
-        operacionRestar,
-        operacionSumar,
+        operaciones,
         calcularResultado,
         resultado
     }
